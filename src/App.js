@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Home from './components/HomePage/Home-Js-Files/Home';
+import React from 'react';
+import { BrowserRouter, Routes, Route,} from 'react-router-dom';
+import Details from './components/HomePage/Home-Js-Files/DetailsFillingPage/Details';
+import PreviewPage from './components/HomePage/Home-Js-Files/DetailsFillingPage/Preview';
+import MyResume from './components/MyResumes/MyResumes'
+import ResumeViewPage from './components/MyResumes/ViewResume';
+import AboutUs from './components/AboutUs';
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+      <BrowserRouter>
+        <Routes>
+          <Route path='/about' element={<AboutUs />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/preview' element={<PreviewPage/>} />
+          <Route path='/details' element={<Details />} />
+          <Route path='/myresumes' element={<MyResume/>} />
+          <Route path="/viewresume/:resumeName" element={<ResumeViewPage />} />
+    
+        </Routes>
+      </BrowserRouter>
+  
   );
 }
 

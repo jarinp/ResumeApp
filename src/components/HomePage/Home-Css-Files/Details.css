@@ -1,0 +1,38 @@
+.details-form {
+  width: 100%;
+}
+
+.form-content {
+  width: 100%;
+  padding: 20px 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .form-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-buttons button {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+}
+
+.css-10d9dml-MuiTabs-indicator {
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  width: 4px !important; /* Width of the indicator */
+  background-color: #3219d2; /* Color of the indicator */
+  left: 0; /* Ensure indicator is positioned correctly */
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; /* Smooth transition */
+}
