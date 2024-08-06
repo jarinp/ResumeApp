@@ -10,7 +10,7 @@ const EducationForm = () => {
 
   // Initialize form with useFormContext
   const methods = useFormContext();
-  const { control, register, formState: { errors } } = methods;
+  const { control, register, formState: { errors }, setError, clearErrors } = methods;
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'educations'
@@ -46,6 +46,13 @@ const EducationForm = () => {
     const endYear = new Date().getFullYear();
     return Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
   }, []);
+
+  const validateEndYear = (startYear, endYear) => {
+    if (startYear && endYear && endYear <= startYear) {
+      return 'End Year must be after Start Year';
+    }
+    return true;
+  };
 
   return (
     <form>
@@ -105,7 +112,10 @@ const EducationForm = () => {
             <TextField
               label="End Year"
               select
-              {...register(`educations.${index}.endYear`, { required: 'End Year is required' })}
+              {...register(`educations.${index}.endYear`, {
+                required: 'End Year is required',
+                validate: (value) => validateEndYear(formData[index]?.startYear, value)
+              })}
               fullWidth
               SelectProps={{ native: true }}
               error={!!errors.educations?.[index]?.endYear}
@@ -118,7 +128,7 @@ const EducationForm = () => {
               ))}
             </TextField>
           </Grid>
-          <Grid item xs={12} sm={12}>
+          <Grid item xs={12}>
             <Button
               variant="contained"
               color="error"

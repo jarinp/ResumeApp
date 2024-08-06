@@ -3,8 +3,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route,} from 'react-router-dom';
 import Details from './components/HomePage/Home-Js-Files/DetailsFillingPage/Details';
 import PreviewPage from './components/HomePage/Home-Js-Files/DetailsFillingPage/Preview';
-import MyResume from './components/MyResumes/MyResumes'
-import ResumeViewPage from './components/MyResumes/ViewResume';
+import MyResume from './components/MyResumes/MyResumes';
+
 import AboutUs from './components/AboutUs';
 function App() {
 
@@ -17,8 +17,7 @@ function App() {
           <Route path='/preview' element={<PreviewPage/>} />
           <Route path='/details' element={<Details />} />
           <Route path='/myresumes' element={<MyResume/>} />
-          <Route path="/viewresume/:resumeName" element={<ResumeViewPage />} />
-    
+        
         </Routes>
       </BrowserRouter>
   

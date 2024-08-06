@@ -18,8 +18,8 @@ const Home = () => {
     localStorage.setItem('isStartingNewResume', true);
     navigate('/details');
   };
-  
-  const selectedTemplate = templates.find(template => template.Id === selectedTemplateId);
+
+  console.log('Template Images:', templates.map(t => t.image));
 
   return (
     <div>
@@ -39,10 +39,7 @@ const Home = () => {
                 src={template.image}
                 alt={`Template ${template.name}`}
                 className="template-image"
-                width= '100%'
-                maxWidth= '150px' // Adjust the max-width as needed
-                height= 'auto'
-                objectFit='cover'
+                
               />
               <button
                 className="use-template-button"

@@ -41,6 +41,13 @@ const WorkExperienceForm = () => {
     return Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i);
   }, []);
 
+  const validateEndYear = (startYear, endYear) => {
+    if (startYear && endYear && endYear <= startYear) {
+      return 'End Year must be after Start Year';
+    }
+    return true;
+  };
+
   return (
     <form>
       <Typography variant="h6" gutterBottom>
@@ -89,7 +96,10 @@ const WorkExperienceForm = () => {
             <TextField
               label="End Year"
               select
-              {...register(`experiences.${index}.endYear`, { required: 'End Year is required' })}
+              {...register(`experiences.${index}.endYear`, {
+                required: 'End Year is required',
+                validate: (value) => validateEndYear(formData[index]?.startYear, value)
+              })}
               fullWidth
               error={!!errors.experiences?.[index]?.endYear}
               helperText={errors.experiences?.[index]?.endYear?.message}

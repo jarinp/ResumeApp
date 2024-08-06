@@ -12,10 +12,6 @@ import {
   SET_ACTIVE_TAB
 } from './actionType';
 
-export const setActiveTab = (tabIndex) => ({
-  type: SET_ACTIVE_TAB,
-  payload: tabIndex,
-});
 
 
 export const TemplateSelection = (Id) => ({

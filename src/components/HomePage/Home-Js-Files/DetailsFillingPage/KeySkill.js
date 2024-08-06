@@ -26,7 +26,7 @@ const KeySkillsForm = () => {
   useEffect(() => {
     // Ensure at least 4 default skill entries are present
     if (fields.length === 0) {
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 2; i++) {
         append({ skill: '' });
       }
     }
@@ -39,7 +39,7 @@ const KeySkillsForm = () => {
   };
 
   const handleRemoveSkill = (index) => {
-    if (fields.length > 4) {
+    if (fields.length > 2) {
       remove(index);
     }
   };
@@ -54,21 +54,22 @@ const KeySkillsForm = () => {
           <Grid item xs={12}>
             <Typography variant="subtitle1">Skill {index + 1}</Typography>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <TextField
               label="Skill"
               {...register(`keySkills.${index}.skill`, { required: 'Skill is required' })}
               fullWidth
+              size="small" // Reduce field size
               error={!!errors.keySkills?.[index]?.skill}
               helperText={errors.keySkills?.[index]?.skill?.message}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Button
               variant="contained"
               color="error"
               onClick={() => handleRemoveSkill(index)}
-              disabled={fields.length <= 4} // Ensure at least 4 skills
+              disabled={fields.length <= 2} // Ensure at least 4 skills
               fullWidth
             >
               Remove Skill
