@@ -1,9 +1,9 @@
 // templateReducer.js
 import { SELECT_TEMPLATE } from './actionType';
-import templateone from '../Images/Template-1.jpg';
-import templatetwo from '../Images/Template2.jpeg';
-import templatethree from '../Images/Template 3.jpeg';
-import templatefour from '../Images/Template 4.jpeg';
+import templateone from '../Images/TEMPLATE-1_page-0001.jpg';
+import templatetwo from '../Images/Template-2.png'; 
+import templatethree from '../Images/TEMPLATE-3_page-0001 (1).jpg';
+import templatefour from '../Images/TEMPLATE-4_page-0001.jpg';
 import Template1 from '../components/Templates/Template1';
 import Template2 from '../components/Templates/Template2';
 import Template3 from '../components/Templates/Template3';

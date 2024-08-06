@@ -39,7 +39,7 @@ const Home = () => {
                 src={template.image}
                 alt={`Template ${template.name}`}
                 className="template-image"
-                
+                height='auto'
               />
               <button
                 className="use-template-button"
@@ -60,3 +60,4 @@ const Home = () => {
 }
 
 export default Home;
+
