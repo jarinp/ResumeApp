@@ -109,7 +109,7 @@ const PersonalInfo = () => {
               defaultValue=""
               rules={{
                 required: 'Phone number is required',
-                pattern: { value: /^[0-9]+$/i, message: 'Invalid phone number' }
+                pattern: { value: /^([0-9]{10})+$/i, message: 'Invalid phone number' }
               }}
               render={({ field, fieldState }) => (
                 <TextField
@@ -180,7 +180,7 @@ const PersonalInfo = () => {
               defaultValue=""
               rules={{
                 required: 'Postal code is required',
-                pattern: { value: /^[0-9]+$/i, message: 'Invalid postal code' }
+                pattern: { value: /^([0-9]{6})+$/i, message: 'Invalid postal code' }
               }}
               render={({ field, fieldState }) => (
                 <TextField
