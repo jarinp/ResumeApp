@@ -4,20 +4,52 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 
+// Function to open or upgrade IndexedDB
+const openIndexedDB = (dbName, dbVersion, upgradeCallback) => {
+  const request = indexedDB.open(dbName, dbVersion);
+
+  request.onsuccess = (event) => {
+    console.log("Database opened successfully");
+    const db = event.target.result;
+    // You can now interact with the database
+  };
+
+  request.onerror = (event) => {
+    console.error("Database error:", event.target.errorCode);
+  };
+
+  request.onupgradeneeded = (event) => {
+    const db = event.target.result;
+    console.log("Upgrading database");
+    // Run schema upgrade logic here
+    upgradeCallback(db);
+  };
+};
+
+// Define schema upgrade logic
+const upgradeDatabase = (db) => {
+  if (!db.objectStoreNames.contains("resumes")) {
+    db.createObjectStore("resumes", { keyPath: "name" });
+  }
+};
+
+// Fetch resumes from IndexedDB
 const fetchFromIndexedDB = (callback) => {
-  const request = window.indexedDB.open("ResumeDB", 1);
+  openIndexedDB("ResumeDB", 2, upgradeDatabase); // Open with version 2
+
+  const request = indexedDB.open("ResumeDB", 2);
 
   request.onsuccess = (event) => {
     const db = event.target.result;
     const transaction = db.transaction("resumes", "readonly");
     const store = transaction.objectStore("resumes");
-    const request = store.getAll();
+    const fetchRequest = store.getAll();
 
-    request.onsuccess = () => {
-      callback(request.result);
+    fetchRequest.onsuccess = () => {
+      callback(fetchRequest.result);
     };
     
-    request.onerror = (event) => {
+    fetchRequest.onerror = (event) => {
       console.error("Error fetching from IndexedDB:", event.target.errorCode);
     };
   };
@@ -27,8 +59,11 @@ const fetchFromIndexedDB = (callback) => {
   };
 };
 
+// Delete resume from IndexedDB
 const deleteFromIndexedDB = (resumeName, callback) => {
-  const request = window.indexedDB.open("ResumeDB", 1);
+  openIndexedDB("ResumeDB", 2, upgradeDatabase); // Open with version 2
+
+  const request = indexedDB.open("ResumeDB", 2);
 
   request.onsuccess = (event) => {
     const db = event.target.result;
@@ -216,5 +251,3 @@ const MyResumesPage = () => {
 };
 
 export default MyResumesPage;
-
-

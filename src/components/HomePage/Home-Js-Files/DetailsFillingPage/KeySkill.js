@@ -26,7 +26,7 @@ const KeySkillsForm = () => {
   useEffect(() => {
     // Ensure at least 4 default skill entries are present
     if (fields.length === 0) {
-      for (let i = 0; i < 1; i++) {
+      for (let i = 0; i < 4; i++) {
         append({ skill: '' });
       }
     }
