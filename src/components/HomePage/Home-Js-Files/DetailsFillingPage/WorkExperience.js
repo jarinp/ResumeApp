@@ -7,7 +7,7 @@ import { setWorkExperience } from '../../../../Redux/action';
 const WorkExperienceForm = () => {
   const dispatch = useDispatch();
   const workExperience = useSelector((state) => state.userDetails?.workExperience || []);
-  const { control, register, formState: { errors }, reset, setValue } = useFormContext();
+  const { control, register, formState: { errors }, reset } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'experiences',
@@ -23,6 +23,7 @@ const WorkExperienceForm = () => {
       reset({ experiences: workExperience });
     }
   }, [workExperience, reset]);
+  
 
   // Dispatch form data to Redux store on change
   useEffect(() => {

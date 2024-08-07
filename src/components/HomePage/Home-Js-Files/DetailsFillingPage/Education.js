@@ -1,20 +1,21 @@
 import React, { useEffect, useMemo } from 'react';
 import { useFieldArray, useWatch, useFormContext } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
-import { Button, Grid, TextField, Typography, MenuItem } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { Button, Grid, TextField, Typography} from '@mui/material';
 import { setEducation } from '../../../../Redux/action';
 
 const EducationForm = () => {
   const dispatch = useDispatch();
-  const education = useSelector((state) => state.userInfo?.userDetails?.education || []);
+  
 
   // Initialize form with useFormContext
   const methods = useFormContext();
-  const { control, register, formState: { errors }, setError, clearErrors } = methods;
+  const { control, register, formState: { errors }} = methods;
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'educations'
   });
+  
 
   // Watch for changes in form data
   const formData = useWatch({ control, name: 'educations' });

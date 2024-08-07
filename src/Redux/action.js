@@ -9,7 +9,7 @@ import {
   SET_USER_DETAILS,
   SET_WORK_EXPERIENCE,
   SET_USER_IMAGE,
-  SET_ACTIVE_TAB
+  
 } from './actionType';
 
 

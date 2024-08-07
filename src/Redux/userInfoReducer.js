@@ -1,6 +1,5 @@
 
 import {
-    SET_ACTIVE_TAB,
     SET_PERSONAL_INFO,
     SET_EDUCATION,
     SET_KEY_SKILLS,
@@ -34,11 +33,7 @@ import {
   
   const userInfoReducer = (state = initialState, action) => {
     switch (action.type) {
-      case SET_ACTIVE_TAB:
-        return {
-          ...state,
-          activeTab: action.payload
-         };
+     
       case SET_USER_DETAILS:
         return {
           ...state,

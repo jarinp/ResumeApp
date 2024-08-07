@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import {  Controller, useWatch, useFormContext } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
+import { useDispatch} from 'react-redux';
 import { setPersonalInfo } from '../../../../Redux/action';
 import { Box, Grid, TextField, IconButton, Avatar, Link } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 const PersonalInfo = () => {
-  const { control, setValue,  } = useFormContext();
+  const { control, setValue } = useFormContext();
   const dispatch = useDispatch();
-  const personalInfo = useSelector((state) => state.userInfo.userDetails.personalInfo);
   const [image, setImage] = useState(null);
+
+  // Watch form data
+  const formData = useWatch({ control });
+
+
+  useEffect(() => {
+    dispatch(setPersonalInfo(formData)); // Dispatch form data to Redux store
+  }, [formData, dispatch]);
 
 
 
@@ -17,18 +24,14 @@ const PersonalInfo = () => {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        setImage(e.target.result);
-        setValue('image', e.target.result); // Connect image to form
+        const imageData = e.target.result;
+        setImage(imageData);
+        setValue('image', imageData); // Connect image to form
+        localStorage.setItem('profileImage', imageData); // Save image data to localStorage
       };
       reader.readAsDataURL(event.target.files[0]);
     }
   };
-
-  const formData = useWatch({ control });
-
-  useEffect(() => {
-    dispatch(setPersonalInfo(formData)); // Dispatch form data to Redux store
-  }, [dispatch, formData]);
 
   return (
     <form>

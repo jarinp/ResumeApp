@@ -13,7 +13,7 @@ import Template3 from '../../../Templates/Template3';
 import Template4 from '../../../Templates/Template4';
 
 const saveToIndexedDB = (pdfData, resumeName) => {
-  const request = window.indexedDB.open("ResumeDB", 1);
+  const request = window.indexedDB.open("ResumeDB", 2);
 
   request.onupgradeneeded = (event) => {
     const db = event.target.result;
@@ -28,7 +28,7 @@ const saveToIndexedDB = (pdfData, resumeName) => {
   };
 
   request.onerror = (event) => {
-    console.error("IndexedDB error:", event.target.errorCode);
+    console.error("IndexedDB error:", event.target.error);
   };
 };
 
@@ -48,7 +48,7 @@ const PreviewPage = () => {
 
   const SelectedTemplateComponent = templateComponents[selectedTemplate];
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!SelectedTemplateComponent) {
       alert('No template selected.');
       return;
@@ -65,7 +65,8 @@ const PreviewPage = () => {
       return;
     }
 
-    html2canvas(templateContainer, { scale: 2, useCORS: true }).then((canvas) => {
+    try {
+      const canvas = await html2canvas(templateContainer, { scale: 2, useCORS: true });
       const imgData = canvas.toDataURL('image/png');
       const imgWidth = 210; // A4 width in mm
       const pageHeight = 295; // A4 height in mm
@@ -97,9 +98,9 @@ const PreviewPage = () => {
       URL.revokeObjectURL(blobURL);
 
       setOpenSuccessModal(true);
-    }).catch((error) => {
-      console.error("Error generating PDF", error);
-    });
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
   };
 
   const handleBack = () => {
@@ -191,4 +192,3 @@ const PreviewPage = () => {
 };
 
 export default PreviewPage;
-

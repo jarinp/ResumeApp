@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, {  useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, FormProvider } from 'react-hook-form';
 import { Tabs, Tab, Box, Button, Grid } from '@mui/material';
@@ -9,7 +8,6 @@ import Education from './Education';
 import KeySkills from './KeySkill';
 import Navbar from '../../../Navbar/Navbar';
 import '../../Home-Css-Files/Details.css';
-import { TemplateSelection } from '../../../../Redux/action';
 
 const tabLabels = ['Personal Information', 'Work Experience', 'Education', 'Key Skills'];
 
@@ -17,32 +15,9 @@ const Details = () => {
   const [activeTab, setActiveTab] = useState(0);
   const navigate = useNavigate();
   const methods = useForm();
-  const dispatch = useDispatch();
-  const selectedTemplate = useSelector((state) => state.template.selectedTemplate);
 
 
-  useEffect(() => {
-    // Clear activeTab if starting a new resume
-    const isStartingNewResume = localStorage.getItem('isStartingNewResume');
-    if (isStartingNewResume) {
-      localStorage.removeItem('activeTab');
-      localStorage.removeItem('isStartingNewResume');
-    } else {
-      const savedTab = localStorage.getItem('activeTab');
-      if (savedTab !== null) {
-        const tabIndex = parseInt(savedTab, 10);
-        if (tabIndex >= 0 && tabIndex < tabLabels.length) {
-          setActiveTab(tabIndex);
-        } else {
-          localStorage.removeItem('activeTab');
-        }
-      }
-    }
-  }, []);
 
-  useEffect(() => {
-    localStorage.setItem('activeTab', activeTab);
-  }, [activeTab]);
 
   const handleTabChange = async (event, newValue) => {
     const isValid = await methods.trigger();
