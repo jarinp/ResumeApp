@@ -2,15 +2,18 @@
 This project(Resume Buider) is a web application built using React and Material UI for building user interfac.it also combines  React-Redux for state management, ReactAvatar-edit for avatar customization, React-Router-Dom for navigation, and Js pdf for creating pdf.
 # Introduction
  As we know that resume file is an essential component in our professional life where we will be able to showcase our potential along with our achievements to the people who will be needing us. 
-In this project, we have created three pages namely ‘Resume templates’ or home page, ‘My resumes’ and ‘About us’ page. We can access these pages on the navigation bar which have been placed at the top of the website.In this app anyone can create resume with ease and choose from different available templates.After filling information we can preview our resume with selected template.
+In this project, we have created three pages namely ‘Resume templates’ or home page, ‘My resumes’ and ‘About us’ page. We can access these pages on the navigation bar which have been placed at the top of the website.In this app anyone can create resume with ease and choose from different available templates.There are four tabs namely, personal info,work experience,Education and Keyskill.After filling information we can preview our resume with selected template.
 # Used Features
-React-Router-Dom: Efficient and dynamic routing for the application.
-Material UI: Building responsive user interface.
-React-Redux: For state Management.
-CSS: Custom styles to tailor the user interface to your preferences.
-React-Hook-Forms: For Form vaidations.
-Jspdf Converter: Generate PDF files directly from your web application.
-
+*React-Router-Dom: Efficient and dynamic routing for the application.
+*Material UI: Building responsive user interface.
+*React-Redux: For state Management.
+*CSS: Custom styles to tailor the user interface to your preferences.
+*React-Hook-Forms: For Form vaidations.
+*Jspdf Converter: Generate PDF files directly from your web application.
+# pages
+1. Home page- where you can select Template.
+2. Resume page-where you can see created resumes.
+3. About Us page- Description about ResumeApp
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
