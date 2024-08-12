@@ -1,5 +1,5 @@
 # Project Description
-This project(Resume Buider) is a web application built using React and Material UI for building user interfac.it also combines  React-Redux for state management, ReactAvatar-edit for avatar customization, React-Router-Dom for navigation, and Js pdf for creating pdf.
+This project(Resume Buider) is a web application built using React and Material UI for building user interface.it also combines  React-Redux for state management, ReactAvatar-edit for avatar customization, React-Router-Dom for navigation, and Js pdf for creating pdf.
 # Introduction
  As we know that resume file is an essential component in our professional life where we will be able to showcase our potential along with our achievements to the people who will be needing us. 
 In this project, we have created three pages namely ‘Resume templates’ or home page, ‘My resumes’ and ‘About us’ page. We can access these pages on the navigation bar which have been placed at the top of the website.In this app anyone can create resume with ease and choose from different available templates.There are four tabs namely, personal info,work experience,Education and Keyskill.After filling information we can preview our resume with selected template.
